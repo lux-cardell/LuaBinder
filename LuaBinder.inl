@@ -115,7 +115,8 @@ LuaValue::LuaValue(lua_State * L, int i)
         case LUA_TSTRING:
         {
             type = vtString;
-            value.s = std::string(lua_tostring(L, i));
+            size_t len = 0;
+            value.s = std::string(lua_tolstring(L, i, &len));
         } break;
         
         case LUA_TLIGHTUSERDATA:
